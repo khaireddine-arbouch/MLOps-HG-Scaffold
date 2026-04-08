@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Add remote
+        env:
+          HF: ${{ secrets.HF }}
+        run: |
+          git remote add space https://khaireddine-arbouch:${HF}@huggingface.co/spaces/khaireddine-arbouch/demo1
+
+      - name: Push to Hugging Face Space
+        env:
+          HF: ${{ secrets.HF }}
+        run: |
+          git push --force https://khaireddine-arbouch:${HF}@huggingface.co/spaces/khaireddine-arbouch/demo1 main
