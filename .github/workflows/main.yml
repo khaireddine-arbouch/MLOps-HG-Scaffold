@@ -21,10 +21,10 @@ jobs:
         env:
           HF: ${{ secrets.HF }}
         run: |
-          git remote add space https://khaireddine-arbouch:${HF}@huggingface.co/spaces/khaireddine-arbouch/demo1
+          git remote add space https://khaireddine-arbouch:$HF@huggingface.co/spaces/khaireddine-arbouch/demo1
 
       - name: Push to Hugging Face Space
         env:
           HF: ${{ secrets.HF }}
         run: |
-          git push --force https://khaireddine-arbouch:${HF}@huggingface.co/spaces/khaireddine-arbouch/demo1 main
+          git push --force https://khaireddine-arbouch:$HF@huggingface.co/spaces/khaireddine-arbouch/demo1 main
